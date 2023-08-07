@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+      comment: Database structure for orders
+      id: creating orders database
+      author: Abuzar
+      changes:
+        - createTable:
+            tableName: orders
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: order_id
+                  type: varchar(50)
+              - column:
+                  name: assignee
+                  type: varchar(25)
+              - column:
+                  name: status
+                  type: varchar(25)
+              - column:
+                  name: notes
+                  type: TEXT
+              - column:
+                  name: order_date
+                  type: date
+                  defaultValue: now()
+              - column:
+                  name: shipping_address
+                  type: varchar(50)

@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+      comment: Database structure for tickets
+      id: creating tickets database
+      author: Abuzar
+      changes:
+        - createTable:
+            tableName: tickets
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: order_id
+                  type: varchar(50)
+              - column:
+                  name: assignee
+                  type: varchar(25)
+              - column:
+                  name: status
+                  type: varchar(25)
+              - column:
+                  name: details
+                  type: TEXT
+              - column:
+                  name: created_at
+                  type: date
+                  defaultValue: now()
+              - column:
+                  name: estimated_end_date
+                  type: date

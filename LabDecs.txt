@@ -1,0 +1,6 @@
+User orders a card
+user can see all orders
+when order starts, ticket must be created
+Manager can see undone tickets
+Manager can change ticket status -- If status needs to be done, there should be a card ready associated
+

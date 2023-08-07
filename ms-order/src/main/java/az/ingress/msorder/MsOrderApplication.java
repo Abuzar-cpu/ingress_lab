@@ -1,0 +1,21 @@
+package az.ingress.msorder;
+
+import jakarta.annotation.PostConstruct;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.PostMapping;
+
+@SpringBootApplication
+@Slf4j
+public class MsOrderApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(MsOrderApplication.class, args);
+    }
+
+    @PostConstruct
+    public void test() {
+        log.info("Running");
+    }
+}
