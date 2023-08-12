@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: 123456
+    url: jdbc:postgresql://localhost:5432/ms_tickets
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+
+  rabbitmq:
+
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        retry:
+          enabled: true
+          initial-interval: 10s
+          max-attempts: 5
+          max-interval: 15s
+          multiplier: 1
+        missing-queues-fatal: false
+
+rabbitmq:
+  ticket:
+    queue: TICKET_Q
+    dlq: TICKET_DLQ

@@ -1,4 +1,4 @@
-package az.ingress.msorder.model.entities;
+package az.ingress.mstickets.models.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,18 +6,9 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.UUID;
 
-@Table(name = "orders")
-@Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-@ToString
-@Builder
-public class Order {
+@Data
+public class OrderEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String orderId = UUID.randomUUID().toString();

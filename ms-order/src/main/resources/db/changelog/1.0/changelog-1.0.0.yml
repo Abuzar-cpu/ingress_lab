@@ -32,3 +32,6 @@ databaseChangeLog:
               - column:
                   name: shipping_address
                   type: varchar(50)
+              - column:
+                  name: type
+                  type: varchar(50)

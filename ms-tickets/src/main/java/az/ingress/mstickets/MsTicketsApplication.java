@@ -7,14 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @Slf4j
+//@EnableRabbit
 public class MsTicketsApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MsTicketsApplication.class, args);
     }
 
-    @PostConstruct
-    public void test() {
-        log.info("Running");
-    }
 }

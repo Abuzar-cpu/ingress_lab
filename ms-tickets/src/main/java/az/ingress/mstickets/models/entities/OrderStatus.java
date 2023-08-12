@@ -1,4 +1,4 @@
-package az.ingress.msorder.model.entities;
+package az.ingress.mstickets.models.entities;
 
 public enum OrderStatus {
     IN_PROGRESS,
