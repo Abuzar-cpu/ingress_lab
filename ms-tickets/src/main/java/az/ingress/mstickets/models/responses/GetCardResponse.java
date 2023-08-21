@@ -1,7 +1,7 @@
-package az.ingress.mscards.model.entities.responses;
+package az.ingress.mstickets.models.responses;
 
-import az.ingress.mscards.model.entities.CardStatus;
-import az.ingress.mscards.model.entities.CardType;
+import az.ingress.mstickets.models.entities.CardStatus;
+import az.ingress.mstickets.models.entities.CardType;
 import lombok.*;
 
 @Getter

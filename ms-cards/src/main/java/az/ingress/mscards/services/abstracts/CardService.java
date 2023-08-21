@@ -10,7 +10,12 @@ import java.util.List;
 
 public interface CardService {
     CreateCardResponse createCard(CreateCardRequest request);
+
     GetCardResponse getCardByPan(String pan);
+
     List<GetCardResponse> getCards();
+
     UpdateCardResponse updateCard(UpdateCardRequest request);
+
+    GetCardResponse getCardByOrderId(String orderId);
 }

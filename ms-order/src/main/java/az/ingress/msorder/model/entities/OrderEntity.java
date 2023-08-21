@@ -1,14 +1,25 @@
-package az.ingress.mstickets.models.entities;
+package az.ingress.msorder.model.entities;
 
+import az.ingress.msorder.model.enums.OrderStatus;
+import az.ingress.msorder.model.enums.OrderType;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
-@Data
+@Table(name = "orders")
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+@Builder
 public class OrderEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String orderId = UUID.randomUUID().toString();

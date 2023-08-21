@@ -6,5 +6,4 @@ import lombok.Getter;
 public enum CardStatus {
     DONE,
     PENDING
-
 }

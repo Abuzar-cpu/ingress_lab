@@ -1,13 +1,16 @@
 package az.ingress.msorder.model.responses;
 
-import az.ingress.msorder.model.entities.OrderStatus;
-import az.ingress.msorder.model.entities.OrderType;
+import az.ingress.msorder.model.enums.CardType;
+import az.ingress.msorder.model.enums.OrderStatus;
+import az.ingress.msorder.model.enums.OrderType;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class CreateOrderResponse {
+public class CreateCardOrderResponse {
+    private String cardholderName;
+    private CardType cardType;
     private String orderId;
     private OrderStatus status;
     private OrderType orderType;

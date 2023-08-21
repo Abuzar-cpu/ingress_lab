@@ -1,4 +1,5 @@
-package az.ingress.mstickets.models.requests;
+package az.ingress.msorder.model.requests;
+
 
 import lombok.*;
 
@@ -8,8 +9,8 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @ToString
+@Builder
 public class CreateTicketRequest {
     private String orderId;
     private String assignee;

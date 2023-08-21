@@ -17,9 +17,6 @@ databaseChangeLog:
                   name: order_id
                   type: varchar(50)
               - column:
-                  name: assignee
-                  type: varchar(25)
-              - column:
                   name: status
                   type: varchar(25)
               - column:

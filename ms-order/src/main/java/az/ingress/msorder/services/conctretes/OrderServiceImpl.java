@@ -1,8 +1,9 @@
 package az.ingress.msorder.services.conctretes;
 
+import az.ingress.msorder.client.TicketClient;
 import az.ingress.msorder.dataAccess.OrderRepo;
-import az.ingress.msorder.model.requests.CreateOrderRequest;
-import az.ingress.msorder.model.responses.CreateOrderResponse;
+import az.ingress.msorder.model.requests.CreateCardOrderRequest;
+import az.ingress.msorder.model.responses.CreateCardOrderResponse;
 import az.ingress.msorder.model.responses.GetOrderResponse;
 import az.ingress.msorder.rabbit.QueueSender;
 import az.ingress.msorder.services.abstracts.OrderService;
@@ -18,24 +19,30 @@ import static az.ingress.msorder.utils.OrderMapper.*;
 @Slf4j
 public class OrderServiceImpl implements OrderService {
     private final QueueSender queueSender;
-
-    @Value("${rabbitmq.ticket.queue}")
-    private String ticketQ;
-
     private final OrderRepo orderRepo;
+    private final TicketClient ticketClient;
+    @Value("${rabbitmq.ticket.queue}")
+    private String cardQ;
+
     @Override
-    public CreateOrderResponse createOrder(CreateOrderRequest request) {
-        var order = this.orderRepo.save(mapCreateRequestToEntity(request));
-        this.queueSender.sendToTicketQueue(ticketQ, order);
-        return mapEntityToCreateOrderResponse(order);
+    public CreateCardOrderResponse createCardOrder(CreateCardOrderRequest request) {
+        var order = this.orderRepo.save(mapCreateCardOrderRequestToEntity(request));
+        request.setOrderId(order.getOrderId());
+        this.queueSender.sendToTicketQueue(cardQ, request);
+
+        System.out.println("Creating ticket: " + mapOrderToCreateTicketRequest(order));
+        this.ticketClient.createTicket(mapOrderToCreateTicketRequest(order));
+        // Setting response fields
+        var response = mapEntityToCreateCardOrderResponse(order);
+        response.setCardType(request.getCardType());
+        response.setCardholderName(request.getCardholderName());
+        return response;
     }
 
     @Override
     public GetOrderResponse getOrderByOrderId(String orderId) {
         var order = this.orderRepo.findOrderByOrderId(orderId);
-        log.info(String.valueOf(order));
-        var response = mapEntityToGetOrderResponse(order);
-        log.info(String.valueOf(response));
-        return  response;
+
+        return mapEntityToGetOrderResponse(order);
     }
 }

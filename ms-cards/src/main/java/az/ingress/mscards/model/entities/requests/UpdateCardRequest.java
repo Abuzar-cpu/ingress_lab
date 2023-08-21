@@ -2,8 +2,6 @@ package az.ingress.mscards.model.entities.requests;
 
 import az.ingress.mscards.model.entities.CardStatus;
 import az.ingress.mscards.model.entities.CardType;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

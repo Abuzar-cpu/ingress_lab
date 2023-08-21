@@ -28,6 +28,11 @@ public class CardController {
         return this.cardService.getCardByPan(pan);
     }
 
+    @GetMapping("order/{orderId}")
+    public GetCardResponse getCardByOrderId(@PathVariable String orderId) {
+        return this.cardService.getCardByOrderId(orderId);
+    }
+
     @GetMapping("")
     public List<GetCardResponse> getAllCards() {
         return this.cardService.getCards();

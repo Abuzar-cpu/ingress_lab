@@ -1,18 +1,28 @@
 package az.ingress.msorder.utils;
 
-import az.ingress.msorder.model.entities.Order;
-import az.ingress.msorder.model.entities.OrderStatus;
-import az.ingress.msorder.model.entities.OrderType;
-import az.ingress.msorder.model.requests.CreateOrderRequest;
-import az.ingress.msorder.model.responses.CreateOrderResponse;
+import az.ingress.msorder.model.entities.OrderEntity;
+import az.ingress.msorder.model.enums.OrderStatus;
+import az.ingress.msorder.model.requests.CreateCardOrderRequest;
+import az.ingress.msorder.model.requests.CreateTicketRequest;
+import az.ingress.msorder.model.responses.CreateCardOrderResponse;
 import az.ingress.msorder.model.responses.GetOrderResponse;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
 public class OrderMapper {
-    public static Order mapCreateRequestToEntity(CreateOrderRequest request) {
-        return Order.builder()
+
+    public static CreateTicketRequest mapOrderToCreateTicketRequest(OrderEntity order) {
+        return CreateTicketRequest.builder()
+                .estimatedEndDate(LocalDate.now().plusDays(14))
+                .assignee("Unassigned")
+                .orderId(order.getOrderId())
+                .details(order.getNotes())
+                .build();
+    }
+
+    public static OrderEntity mapCreateCardOrderRequestToEntity(CreateCardOrderRequest request) {
+        return OrderEntity.builder()
                 .orderDate(LocalDate.now())
                 .status(OrderStatus.OPEN)
                 .orderId(UUID.randomUUID().toString())
@@ -22,23 +32,24 @@ public class OrderMapper {
                 .build();
     }
 
-    public static CreateOrderResponse mapEntityToCreateOrderResponse(Order order) {
-        return CreateOrderResponse.builder()
-                .orderType(order.getType())
-                .orderId(order.getOrderId())
-                .status(order.getStatus())
-                .shippingAddress(order.getShippingAddress())
-                .notes(order.getNotes())
+    public static CreateCardOrderResponse mapEntityToCreateCardOrderResponse(OrderEntity orderEntity) {
+        return CreateCardOrderResponse.builder()
+                .orderId(orderEntity.getOrderId())
+                .orderType(orderEntity.getType())
+                .orderId(orderEntity.getOrderId())
+                .status(orderEntity.getStatus())
+                .shippingAddress(orderEntity.getShippingAddress())
+                .notes(orderEntity.getNotes())
                 .build();
     }
 
-    public static GetOrderResponse mapEntityToGetOrderResponse(Order order) {
+    public static GetOrderResponse mapEntityToGetOrderResponse(OrderEntity orderEntity) {
         return GetOrderResponse.builder()
-                .orderType(order.getType())
-                .orderId(order.getOrderId())
-                .shippingAddress(order.getShippingAddress())
-                .orderDate(order.getOrderDate())
-                .orderStatus(order.getStatus())
+                .orderType(orderEntity.getType())
+                .orderId(orderEntity.getOrderId())
+                .shippingAddress(orderEntity.getShippingAddress())
+                .orderDate(orderEntity.getOrderDate())
+                .orderStatus(orderEntity.getStatus())
                 .build();
     }
 }

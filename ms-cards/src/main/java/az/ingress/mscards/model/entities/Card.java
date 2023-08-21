@@ -3,7 +3,7 @@ package az.ingress.mscards.model.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.UUID;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "cards")
@@ -12,6 +12,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +26,6 @@ public class Card {
 
     @Enumerated(EnumType.STRING)
     private CardStatus status = CardStatus.PENDING;
-
-    private String ticketId = UUID.randomUUID().toString();
+    private LocalDate expireDate;
+    private String orderId;
 }

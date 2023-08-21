@@ -1,4 +1,4 @@
-package az.ingress.msorder.model.entities;
+package az.ingress.mscards.model.entities;
 
 public enum OrderType {
     SIMPLE,

@@ -1,14 +1,13 @@
-
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: 123456
-    url: jdbc:postgresql://localhost:5432/ms_orders
+    url: jdbc:postgresql://localhost:5432/ms_cards
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
 
   rabbitmq:
 
@@ -27,9 +26,6 @@ spring:
         missing-queues-fatal: false
 
 rabbitmq:
-  ticket:
+  card:
     queue: CARD_Q
     dlq: CARD_DLQ
-
-server:
-  port: 8081

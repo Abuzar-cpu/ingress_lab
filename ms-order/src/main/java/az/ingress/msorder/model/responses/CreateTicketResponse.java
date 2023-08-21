@@ -1,5 +1,6 @@
-package az.ingress.mstickets.models.requests;
+package az.ingress.msorder.model.responses;
 
+import az.ingress.msorder.model.enums.TicketStatus;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -9,10 +10,10 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString
-public class CreateTicketRequest {
-    private String orderId;
+public class CreateTicketResponse {
     private String assignee;
+    private TicketStatus status;
     private String details;
+    private LocalDate createdAt;
     private LocalDate estimatedEndDate;
 }
